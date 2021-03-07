@@ -13,7 +13,7 @@ public class AnimationBasic extends JPanel implements ActionListener{
    private BufferedImage image;
    private Timer timer;
    private int x,y;
-   private final int START_X=0,START_Y=250;
+   private int turn = 0;
    
    public AnimationBasic() {
       //Image파일 읽어서 image객체로 생성
@@ -45,39 +45,42 @@ public class AnimationBasic extends JPanel implements ActionListener{
    @Override
    public void actionPerformed(ActionEvent e) {
       // x,y좌표 변경
-      x += 1;
-      y -= 1;
-      int getX, getY;
       
-      if(x < HEIGHT) {
+      
+      if(turn == 0) {
         
          x += 1;
-         y += 1;
+         y -= 1;
          
-      } else if (x > WIDTH) {
+      } else if (turn == 1) {
+    	  
+    	  x += 1;
+    	  y += 1;
+    	  
+      } else if (turn == 2) {
     	  
     	  x -= 1;
     	  y += 1;
     	  
-      } else if (y > HEIGHT) {
+      } else if (turn == 3) {
     	  
-    	  x -= 1;
-    	  y -= 1;
-    	  
-      } else if (x < WIDTH) {
-    	  
-    	  x +=1;
+    	  x -=1;
     	  y -=1;
       }
+      if (y == 0) turn++;
+      else if (x > WIDTH) turn++;
+      else if (y > HEIGHT) turn++;
+      else if (x == 0) turn = 0;
       repaint();
       
    }
    public static void main(String[] args) {
       JFrame frame = new JFrame();
       frame.add(new AnimationBasic());
-      frame.setTitle("애니메이션 테스트");
+      frame.setTitle("Animation Test");
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      frame.setSize(500,300);
+      frame.setSize(500,500);
+      frame.setResizable(false);
       frame.setVisible(true);
       
    }
