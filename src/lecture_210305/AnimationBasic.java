@@ -9,10 +9,11 @@ import java.io.*;
 
 public class AnimationBasic extends JPanel implements ActionListener{
 
-   private final int WIDTH = 500, HEIGHT=300;
+   private final int WIDTH = 500, HEIGHT=500;
    private BufferedImage image;
    private Timer timer;
    private int x,y;
+   private final int START_X=0,START_Y=125;
    private int turn = 0;
    
    public AnimationBasic() {
