@@ -14,7 +14,7 @@ public class ImageLabelTest extends JFrame implements ActionListener {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		panel= new JPanel();
-		label = new JLabel("ÀÌ¹ÌÁö¸¦ º¸·Á¸é ¹öÆ°À» ´©¸£¼¼¿ä");
+		label = new JLabel("ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		
 		button = new JButton("see Image");
 		ImageIcon icon = new ImageIcon("icon.gif");
