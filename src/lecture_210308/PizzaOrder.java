@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import java.util.*;
 
 class MyFrame extends JFrame implements ActionListener {
@@ -49,7 +52,11 @@ class MyFrame extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.order_button) {
-            this.text.setText(" " +20000);
+            sum += 10000 + temp1 * 2000;
+            sum += temp2 * 2000;
+            sum += temp3 * 2000;
+            text.setText(String.valueOf(sum) + "원");
+            sum = 0;
         }
         if (e.getSource() == this.cancel_button) {
             temp1 = 0;
@@ -69,15 +76,20 @@ class MyFrame extends JFrame implements ActionListener {
         }
     }
 
-    class TypePanel extends JPanel {
+    class TypePanel extends JPanel implements ChangeListener{
         private JRadioButton combo,potato,bulgogi;
         private ButtonGroup bg;
 
         public TypePanel() {
             setLayout(new GridLayout(3,1));
             combo = new JRadioButton("Combo", true);
+            combo.addChangeListener(this);
+
             potato = new JRadioButton("potato");
+            potato.addChangeListener(this);
+
             bulgogi = new JRadioButton("Bulgogi");
+            bulgogi.addChangeListener(this);
 
             bg = new ButtonGroup();
             bg.add(combo);
@@ -90,9 +102,17 @@ class MyFrame extends JFrame implements ActionListener {
             add(potato);
             add(bulgogi);
         }
+
+        @Override
+        public void stateChanged(ChangeEvent e) {
+            if(e.getSource() ==combo && combo.isSelected()) temp1 =0;
+            else if(e.getSource() == potato && potato.isSelected()) temp1 =1;
+            else if(e.getSource() == bulgogi && bulgogi.isSelected()) temp1 =2;
+
+        }
     }
 
-    class ToppingPanel extends JPanel {
+    class ToppingPanel extends JPanel implements ChangeListener{
         private JRadioButton pepper, cheese, peperoni, bacon;
         private ButtonGroup bg;
 
@@ -100,10 +120,17 @@ class MyFrame extends JFrame implements ActionListener {
             setLayout(new GridLayout(4,1));
             
             pepper = new JRadioButton("pepper",true);
-            cheese = new JRadioButton("cheese");
-            peperoni = new JRadioButton("peperoni");
-            bacon = new JRadioButton("bacon");
+            pepper.addChangeListener(this);
 
+            cheese = new JRadioButton("cheese");
+            cheese.addChangeListener(this);
+
+            peperoni = new JRadioButton("peperoni");
+            peperoni.addChangeListener(this);
+
+            bacon = new JRadioButton("bacon");
+            bacon.addChangeListener(this);
+            
             bg = new ButtonGroup();
             bg.add(pepper);
             bg.add(cheese);
@@ -118,9 +145,17 @@ class MyFrame extends JFrame implements ActionListener {
             add(bacon);
 
         }
+
+        @Override
+		public void stateChanged(ChangeEvent e) {
+			if(e.getSource() == pepper && pepper.isSelected()) temp2 = 0; 		
+			else if (e.getSource() == cheese && cheese.isSelected()) temp2 = 1;   	
+			else if (e.getSource() == peperoni && peperoni.isSelected()) temp2 = 2;			
+			else if(e.getSource()==bacon && bacon.isSelected()) temp2 = 3;		
+		}
     }
 
-    class SizePanel extends JPanel {
+    class SizePanel extends JPanel implements ChangeListener{
         private JRadioButton small, medium, large;
         private ButtonGroup bg;
 
@@ -128,8 +163,13 @@ class MyFrame extends JFrame implements ActionListener {
             setLayout(new GridLayout(3,1));
 
             small = new JRadioButton("small", true);
+            small.addChangeListener(this);
+
             medium = new JRadioButton("medium");
+            medium.addChangeListener(this);
+
             large = new JRadioButton("large");
+			large.addChangeListener(this);
 
             bg = new ButtonGroup();
             bg.add(small);
@@ -142,6 +182,13 @@ class MyFrame extends JFrame implements ActionListener {
             add(medium);
             add(large);
         }
+
+        @Override
+		public void stateChanged(ChangeEvent e) {
+			if(e.getSource()==small && small.isSelected()) temp3 = 0;
+			else if (e.getSource()== medium && medium.isSelected()) temp3 = 1;
+			else if(e.getSource()==large && large.isSelected()) temp3 = 2;
+		}
     }
 }
 public class PizzaOrder {
