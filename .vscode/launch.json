@@ -1,0 +1,59 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch utilTest",
+            "request": "launch",
+            "mainClass": "lecture_210326.utilTest",
+            "projectName": "JavaStudyAndSubject"
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch AnimationBasic",
+            "request": "launch",
+            "mainClass": "lecture_210305.AnimationBasic",
+            "projectName": "JavaStudyAndSubject"
+        },
+        {
+            "type": "java",
+            "name": "Launch BezierCurve",
+            "request": "launch",
+            "mainClass": "lecture_210305.BezierCurve",
+            "projectName": "JavaStudyAndSubject"
+        },
+        {
+            "type": "java",
+            "name": "Launch FillShapes",
+            "request": "launch",
+            "mainClass": "lecture_210305.FillShapes",
+            "projectName": "JavaStudyAndSubject"
+        },
+        {
+            "type": "java",
+            "name": "Launch MoreShapes",
+            "request": "launch",
+            "mainClass": "lecture_210305.MoreShapes",
+            "projectName": "JavaStudyAndSubject"
+        },
+        {
+            "type": "java",
+            "name": "Launch CheckBoxPanel",
+            "request": "launch",
+            "mainClass": "lecture_210308.CheckBoxPanel",
+            "projectName": "JavaStudyAndSubject"
+        },
+        {
+            "type": "java",
+            "name": "Launch ImageLabelTest",
+            "request": "launch",
+            "mainClass": "lecture_210308.ImageLabelTest",
+            "projectName": "JavaStudyAndSubject"
+        }
+    ]
+}
