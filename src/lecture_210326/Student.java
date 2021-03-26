@@ -1,6 +1,6 @@
 package lecture_210326;
 
-public class Student implements util{
+public class Student implements <Comparable>Student{
     private String name;
     private int score;
     public Student(String name, int score) {
@@ -14,11 +14,11 @@ public class Student implements util{
         this.score = score;
     }
 
-    public String setName() {
+    public String setName(String name) {
         return name;
     }
 
-    public int setScore() {
+    public int setScore(int score) {
         return score;
     }
     @Override 
