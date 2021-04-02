@@ -59,9 +59,8 @@ public class Calculator extends JFrame implements ActionListener {
             operator = "=";
             display.setText("0.0");
         } else if (command.charAt(0) >= '0' && command.charAt(0) <= '9' || command.equals(".")) {
-            if (startOfNumber == true) {
-                display.setText(command);
-            } else display.setText(display.getText() + command);
+            if (startOfNumber == true) display.setText(command);
+            else display.setText(display.getText() + command);
             startOfNumber = false;
         } else {
             if (startOfNumber) {
@@ -84,6 +83,7 @@ public class Calculator extends JFrame implements ActionListener {
         else if (operator.equals("*")) result *= n;
         else if (operator.equals("/")) result /= n;
         else if (operator.equals("=")) result = n;
+        else if (operator.equals("sqrt")) result = n;
         display.setText(" " + result);
     }
 
