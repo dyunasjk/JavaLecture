@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import java.io.*;
 
 public class Dictionary extends JPanel implements ActionListener { // actionlistener  implements 해서 사용가능하게
     private JTextField inputField = new JTextField(30); // GUI 구성
@@ -15,6 +16,8 @@ public class Dictionary extends JPanel implements ActionListener { // actionlist
     private Map<String, String> dict1 = new HashMap<>();
     private Map<String, String> dict2 = new HashMap<>();
 
+    private static final String DIC_FILE_NAME = "C:/Users/jgh49/Desktop/javaPractice/javaLecture/dict.props";
+
 
     public Dictionary() {
         // 레이아웃 설정을 해도 되고 안해도 됨
@@ -25,10 +28,23 @@ public class Dictionary extends JPanel implements ActionListener { // actionlist
         searchAddPanel.add(addBtn2);
         addBtn2.addActionListener(this);
         searchAddPanel.setPreferredSize(new Dimension(600, 50));
-
+        buildDictionaryFromFile();
         this.setLayout(new BorderLayout());
         this.add(searchAddPanel, BorderLayout.CENTER);
+    }
 
+    private void buildDictionaryFromFile() {
+        Properties props = new Properties();
+        try(FileReader fReader = new FileReader(DIC_FILE_NAME)) {
+            props.load(fReader);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        Set<Object> set = props.keySet();
+        for (Object key: set) {
+            Object value = props.get(key);
+            dict1.put((String)key, (String) value);
+        }
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -51,6 +67,8 @@ public class Dictionary extends JPanel implements ActionListener { // actionlist
             if (value == null || value.trim().length() == 0) return;
                 dict1.put(key, value);
                 dict1.put(value, key);
+                addWordToFile(key, value);
+                addWordToFile(value, key);
                 JOptionPane.showMessageDialog(this, "영어 단어가 추가되었습니다", "성공", JOptionPane.INFORMATION_MESSAGE);
         } inputField.requestFocus();
     /*    if(e.getSource() == searchBtn) {
@@ -83,6 +101,16 @@ public class Dictionary extends JPanel implements ActionListener { // actionlist
             }
         } repaint();
     } */
+    }
+    private void addWordToFile(String key, String value) {
+        try(FileWriter fWriter = new FileWriter(DIC_FILE_NAME)) {
+            String str = key +"="+value+"\n";
+            fWriter.write(str);
+
+            // 사과=apple, 책상=desk, 의자=chair 이런식으로 되기 때문에 대행문자도 사용
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 
