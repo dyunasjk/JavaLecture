@@ -1,4 +1,4 @@
-package lecture_210507;
+package lecture_210517;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class buildDictionaryDB extends JPanel implements ActionListener{
+public class buildDictionaryDB2 extends JPanel implements ActionListener{
    
     private JTextField inputField =new JTextField(30);
     private JButton searchBtn = new JButton("검색");
@@ -34,7 +34,7 @@ public class buildDictionaryDB extends JPanel implements ActionListener{
 
 //    private static final String 
    
-    public buildDictionaryDB() {
+    public buildDictionaryDB2() {
         this.add(inputField);
         this.add(searchBtn);
         this.add(addBtn);
@@ -46,12 +46,12 @@ public class buildDictionaryDB extends JPanel implements ActionListener{
         try {
             Class.forName("org.mariadb.jdbc.Driver");
             //buildDictionaryFromFile();
-            buildDictionaryFromDB();
+            buildDictionaryFromDB2();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
-    private void buildDictionaryFromDB() {
+    private void buildDictionaryFromDB2() {
         try (Connection con = DriverManager.getConnection(DB_URL, DB_PASSWORD, DB_PASSWORD)) {
             String sql = "select * from dict";
             // preparedStatement 객체는 실행준비가 완료된 sql 객체
@@ -70,7 +70,7 @@ public class buildDictionaryDB extends JPanel implements ActionListener{
             System.out.println(e.getMessage());
         }
     }
-    private void buildDictionaryFromFile(){
+    private void buildDictionaryFromFile2(){
         Properties props = new Properties();
         try(FileReader fReader = new FileReader(DIC_FILE_NAME)){
             props.load(fReader);   
@@ -82,6 +82,7 @@ public class buildDictionaryDB extends JPanel implements ActionListener{
             Object value = props.get(key);
             dictMap.put((String)key,(String)value);
         }
+        
     }
     
     //   @Override
@@ -151,7 +152,7 @@ public class buildDictionaryDB extends JPanel implements ActionListener{
     public static void main(String[] args)
     {
         JFrame frame = new JFrame();
-        frame.add(new buildDictionaryDB());
+        frame.add(new buildDictionaryDB2());
         frame.setTitle("나의 한영사전");
         frame.setResizable(false);
         frame.pack();

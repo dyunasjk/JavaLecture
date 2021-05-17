@@ -8,6 +8,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="C:\Program Files\Java\jdk-15.0.2\lib\json-simple-1.1.1.jar"/>
 	<classpathentry kind="lib" path="C:\Program Files\Java\jdk-15.0.2\lib\gson-2.8.6.jar"/>
-	<classpathentry kind="lib" path="C:\Program Files\Java\jdk-15.0.2\lib\mariadb-java-client-2.7.3.jar/>
+	<classpathentry kind="lib" path="C:\Program Files\Java\jdk-15.0.2\lib\mariadb-java-client-2.7.3.jar/">
 	<classpathentry kind="output" path="bin"/>	
 </classpath>
